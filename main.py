@@ -143,9 +143,9 @@ async def book(
                     message += f"Failed to post to Discord"
                 case _:  # Catchall
                     message = f"Unhandled error booking the room"
-            await interaction.followup.send(message)
+            await interaction.followup.send(message, ephemeral=True)
 
         except Exception as e:
-            await interaction.followup.send(f"An error occurred: {e}")
+            await interaction.followup.send(f"An error occurred: {e}", ephemeral=True)
 
 bot.run(TOKEN)
