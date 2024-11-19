@@ -48,12 +48,22 @@ async def on_ready():
 async def help(
     interaction: discord.Interaction
 ):
-    message = '''This bot books Carleton Library rooms
-                It's ran on a Pi 3 - Model A+ so it will take
-                about a minute to run.
-                Script @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking
-                Bot @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking-Bot'''
-    await interaction.response.send_message(message, ephemeral=True)
+    embed = discord.Embed(
+        title="Carleton Library Room Booking Bot",
+        description="This bot books Carleton library rooms given the provided arguments\nThe argument usages are detailed when using /book\nDue to hardware limitations, booking takes around a minute",
+        color=discord.Color.blue()
+    )
+    embed.add_field(name="Bot source code", value="[GitHub Link](https://github.com/HenryZhangxiao/Carleton-Library-Autobooking-Bot)", inline=False)
+    embed.add_field(name="Script source code", value="[GitHub Link](https://github.com/HenryZhangxiao/Carleton-Library-Autobooking)", inline=False)
+    embed.set_footer(text="Hosted on Raspberry Pi 3 - Model A+")
+
+    await interaction.response.send_message(embed=embed, ephemeral=True)
+    # message = '''This bot books Carleton Library rooms
+    #             It's ran on a Pi 3 - Model A+ so it will take
+    #             about a minute to run.
+    #             Script @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking
+    #             Bot @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking-Bot'''
+    # await interaction.response.send_message(message, ephemeral=True)
 
 @bot.tree.command(
     name='book',
