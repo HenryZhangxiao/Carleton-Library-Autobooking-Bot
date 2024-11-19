@@ -89,7 +89,7 @@ async def book(
     # Acquire the lock
     async with bot_lock:
         try:
-            await interaction.response.defer()
+            await interaction.response.defer(ephemeral=True)
             # Build the command-line arguments for the script
             if platform.system() == "Windows":
                 command = ["python", SCRIPT_PATH, 
