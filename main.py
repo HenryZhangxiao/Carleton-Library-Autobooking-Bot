@@ -42,6 +42,20 @@ async def on_ready():
 # If it should be in all, remove the argument, but note that
 # it will take some time (up to an hour) to register the command if it's for all guilds.
 @bot.tree.command(
+    name='help',
+    description='Prints the usage'
+)
+async def help(
+    interaction: discord.Interaction
+):
+    message = '''This bot books Carleton Library rooms
+                It's ran on a Pi 3 - Model A+ so it will take
+                about a minute to run.
+                Script @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking
+                Bot @ https://github.com/HenryZhangxiao/Carleton-Library-Autobooking-Bot'''
+    await interaction.response.send_message(message, ephemeral=True)
+
+@bot.tree.command(
     name='book',
     description='Book a library room'
 )
@@ -91,8 +105,6 @@ async def book(
                         ]
             
             print(f"Resolved script path: {SCRIPT_PATH}")
-            print(f"Executing command: {command}")
-            
             
             # Run the script and capture its output
             result  = subprocess.run(command, text=True, capture_output=True)
